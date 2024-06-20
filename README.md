@@ -1,8 +1,33 @@
-# React + Vite
+<!DOCTYPE html>
+<html lang="en">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-Currently, two official plugins are available:
+<body>
+  <header>
+    <h1>ChatGPT Clone with Google Gemini API 🤖</h1>
+  </header>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  <section>
+    <h2>Features</h2>
+    <ul>
+      <li>🌐 <strong>AI-Powered Chat:</strong> Interact seamlessly with an AI chatbot powered by OpenAI's GPT-3.5 model.</li>
+      <li>🔑 <strong>Google Gemini Integration:</strong> Utilizes Google's Gemini API for advanced natural language processing capabilities.</li>
+      <li>📱 <strong>Responsive Design:</strong> Ensures a consistent and user-friendly chat experience across all devices.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Technologies Used</h2>
+    <ul>
+      <li><strong>Frontend:</strong> React.js, HTML, CSS</li>
+      <li><strong>API Integration:</strong> Google Gemini API</li>
+    </ul>
+  </section>
+
+</body>
+
+</html>
