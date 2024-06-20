@@ -30,7 +30,7 @@ const ContextProvider = (props) => {
     let response;
 
     if (prompt !== undefined) {
-      response = await run(prompt);
+      respons = await run(prompt);
       setRecentPrompt(prompt);
     } else {
       response = await run(input);
