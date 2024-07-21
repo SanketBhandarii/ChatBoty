@@ -10,11 +10,26 @@
   align-items: center;
   justify-content: space-between;
   font-size: 22px;
-  padding: 20px;
+  padding: 20px 50px;
   color: #585858;
   font-weight: 700;
 }
-
+.head-right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+}
+.head-right>i{
+  font-size: 30px;
+  background: -webkit-linear-gradient(16deg, #3978e5, #88e8e8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.head-right>p{
+  color: whitesmoke;
+  cursor: pointer;
+}
 .main .nav img {
   width: 40px;
   border-radius: 50%;
@@ -32,7 +47,7 @@
   padding: 20px;
 }
 .main .greet span {
-  background: -webkit-linear-gradient(16deg, #4b90ff, #ff5546);
+  background: -webkit-linear-gradient(16deg, #3978e5, #88e8e8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -51,6 +66,7 @@
   position: relative;
   cursor: pointer;
   font-weight: 500;
+  transition: 0.1s linear all;
 }
 
 .main .card img {
@@ -78,6 +94,7 @@
   padding: 0px 20px;
   margin: auto;
 }
+
 .search-box {
   display: flex;
   align-items: center;
@@ -108,7 +125,7 @@
   align-items: center;
   gap: 15px;
 }
-.search-box > div > i{
+.search-box > div > i {
   cursor: pointer;
 }
 .main .bottom-info {
@@ -132,7 +149,9 @@
 .result-title {
   margin: 40px 0px;
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
+  justify-content: end;
   gap: 20px;
   font-weight: 500;
 }
@@ -180,18 +199,21 @@
   color: white;
 }
 
-@media (max-width:600px) {
-  .main-bottom input{
+@media (max-width: 600px) {
+  .main-bottom input {
     flex: none;
     width: 180px;
   }
-  .main-bottom img{
+  .main-bottom {
+    bottom: 30px;
+  }
+  .main-bottom img {
     width: 20px;
   }
-  .search-box{
+  .search-box {
     padding: 5px 10px;
   }
-  .search-box div{
-    gap:5px
+  .search-box div {
+    gap: 5px;
   }
 }

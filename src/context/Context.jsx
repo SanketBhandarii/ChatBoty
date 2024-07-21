@@ -18,13 +18,16 @@ const ContextProvider = (props) => {
   };
 
   const newChat = () => {
-     setLoading(false);
-     setShowResult(false);
+    setInput("");
+    setResultData("");
+    setLoading(false);
+    setShowResult(false);
   }
 
   const onSent = async (prompt) => {
     setInput("");
-    setResultData("");
+    setRecentPrompt(prompt);
+    setResultData("");  // Clear previous result data before starting new response
     setLoading(true);
     setShowResult(true);
     let response;
@@ -53,7 +56,7 @@ const ContextProvider = (props) => {
     // Replace * with <br/> for line breaks
     newResponse = newResponse.split("*").join("<br/>");
 
-    // Replace - or • with <br/>• or <br/>- to handle bullet points
+    // Replace • with <br/>• to handle bullet points
     newResponse = newResponse.split("•").join("<br/>•");
     newResponse = newResponse.split(":").join("<br/>");
 

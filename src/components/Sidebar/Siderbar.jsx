@@ -16,12 +16,12 @@ const Sidebar = () => {
     <div className={`sidebar ${extended ? "extended" : ""}`}>
       <div className="top">
         <i
-          class="fa-solid fa-bars menu"
+          className="fa-solid fa-bars menu"
           onClick={() => setExtended((prev) => !prev)}
         ></i>
 
         <div className="new-chat" onClick={() => newChat()}>
-        <i class="fa-solid fa-plus"></i>
+        <i className="fa-solid fa-plus"></i>
           {extended ? <p>New Chat</p> : null}
         </div>
         {extended ? (
@@ -33,8 +33,8 @@ const Sidebar = () => {
                 onClick={() => loadPrompt(pp)}
                 className="recent-entry"
               >
-               <i class="fa-solid fa-laptop" style={{fontSize:"20px"}}></i>
-                <p>{pp.slice(0, 15)}...</p>
+               <i className="fa-solid fa-laptop" style={{fontSize:"20px"}}></i>
+                <p>{pp.slice(0, 4)}...</p>
               </div>
             ))}
           </div>
@@ -42,15 +42,15 @@ const Sidebar = () => {
       </div>
       <div className="bottom">
         <div className="bottom-item recent-entry">
-          <i class="fa-solid fa-circle-question"></i>
+          <i className="fa-solid fa-circle-question"></i>
           {extended ? <p>Help</p> : null}
         </div>
         <div className="bottom-item recent-entry">
-          <i class="fa-solid fa-clock-rotate-left"></i>
+          <i className="fa-solid fa-clock-rotate-left"></i>
           {extended ? <p>Activity</p> : null}
         </div>
         <div className="bottom-item recent-entry">
-          <i class="fa-solid fa-gear"></i>
+          <i className="fa-solid fa-gear"></i>
           {extended ? <p>Settings</p> : null}
         </div>
       </div>

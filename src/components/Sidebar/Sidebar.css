@@ -81,13 +81,8 @@
   }
 }
 @media (max-width: 533px) {
-  .sidebar .new-chat p,
-  .sidebar .bottom-item p {
+  .sidebar{
     display: none;
-  }
-
-  .sidebar.extended {
-    width: 90px;
   }
 }
 
