@@ -25,6 +25,7 @@
   background: -webkit-linear-gradient(16deg, #3978e5, #88e8e8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  cursor: pointer;
 }
 .head-right>p{
   color: whitesmoke;
