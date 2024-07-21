@@ -1,32 +1,53 @@
 import React, { useEffect, useState } from "react";
 import Siderbar from "./components/Sidebar/Siderbar";
 import Main from "./components/Main/Main";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const location = useLocation();
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     async function getAuth() {
-      
-      
-      const response = await axios.get("http://localhost:8086/api/home", {
-        withCredentials: true,
-      });
-      if (response.data.msg != "Please do login!") {
-        setUser(response.data.username);
-        return;
+      try {
+        const response = await axios.get(`${BACKEND_URL}/api/home`, {
+          withCredentials: true,
+        });
+        if (response.data.msg !== "Please do login!") {
+          setUser(response.data.username);
+          setLoading(false);
+          return;
+        }
+        navigate("/login");
+      } catch (error) {
+        console.error("Error during authentication check:", error);
+      } finally {
+        setLoading(false);
       }
-      navigate("/login");
     }
     getAuth();
-  }, []);
+  }, [BACKEND_URL, navigate]);
+
   return (
     <>
-      <Siderbar />
-      <Main user={user} />
+      {loading ? (
+        <div className="loader-container">
+          <img
+            src="https://cdn.dribbble.com/users/1549398/screenshots/6727060/dot_loader.gif"
+            className="loader"
+            alt="Loading..."
+          />
+        </div>
+      ) : (
+        <>
+          <Siderbar />
+          <Main user={user} />
+        </>
+      )}
     </>
   );
 };

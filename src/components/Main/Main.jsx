@@ -16,13 +16,13 @@ const Main = ({ user }) => {
     input,
   } = useContext(Context);
   const navigate = useNavigate();
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   const resultContainerRef = useRef(null);
 
   async function handleLogout() {
     try {
-      console.log("clickeeddd");
-      const response = await axios.get("http://localhost:8086/api/logout", {
+      const response = await axios.get(`${BACKEND_URL}/api/logout`, {
         withCredentials: true,
       });
       navigate("/login");
@@ -43,8 +43,10 @@ const Main = ({ user }) => {
       <div className="nav">
         <p style={{ color: "whitesmoke" }}>ChatGPT</p>
         <div className="head-right">
-          <p onClick={() => handleLogout()}>Logout</p>
           <i className="fa-solid fa-circle-user"></i>
+          <p onClick={() => handleLogout()}>
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </p>
         </div>
       </div>
 

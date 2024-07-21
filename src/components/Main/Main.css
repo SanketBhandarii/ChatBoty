@@ -206,7 +206,8 @@
     width: 180px;
   }
   .main-bottom {
-    bottom: 30px;
+    bottom: 0px;
+
   }
   .main-bottom img {
     width: 20px;

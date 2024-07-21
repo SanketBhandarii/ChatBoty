@@ -10,6 +10,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   // useEffect(() => {
   //   const userToken = Cookies.get("token");
@@ -30,7 +31,7 @@ function Login() {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8086/api/login",
+        `${BACKEND_URL}/api/login`,
         {
           email,
           password,
@@ -44,7 +45,9 @@ function Login() {
         setMsg("");
         setPassword("");
         setEmail("");
-        navigate("/");
+        if (response.data.msg != "Incorrect password or email") {
+          navigate("/");
+        }
       }, 3000);
     } catch (e) {
       console.log(e);
@@ -55,7 +58,9 @@ function Login() {
     <div className="container">
       <div className="signup-container">
         <div className="left">
-          <h2>Login Yourself</h2>
+          <h2 id={msg ? "success-msg" : null}>
+            {msg ? msg : "Login Yourself"}
+          </h2>
           <p>
             Don't have an account
             <NavLink
@@ -104,9 +109,7 @@ function Login() {
           </form>
         </div>
         <div className="right">
-          <h2 id={msg ? "success-msg" : null}>
-            {msg ? msg : "Hello, Friend!"}
-          </h2>
+          <h2>Hello, Friend!</h2>
           <p>Enter your details and start journey with us</p>
         </div>
       </div>

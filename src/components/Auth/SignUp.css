@@ -84,7 +84,7 @@ button {
   font-weight: 700;
 }
 #success-msg {
-  color: rgb(2, 32, 52);
+  color: rgb(138, 148, 237);
   font-size: 23px;
 }
 @keyframes signup {
@@ -93,5 +93,25 @@ button {
   }
   100% {
     transform: translateY(4px);
+  }
+}
+@media (max-width: 686px) {
+  .right {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .left {
+    height: 350px;
+    width: 300px;
+  }
+  .signup-form > input,
+  button {
+    width: 230px;
+    height: 40px;
+  }
+  .fa-eye, .fa-eye-slash {
+    transform: translateY(-24px);
   }
 }

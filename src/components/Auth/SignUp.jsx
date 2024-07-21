@@ -11,6 +11,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   // useEffect(() => {
   //   const userToken = Cookies.get("token");
@@ -33,7 +34,7 @@ function SignUp() {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8086/api/signup",
+        `${BACKEND_URL}/api/signup`,
         {
           username,
           email,
@@ -60,7 +61,7 @@ function SignUp() {
     <div className="container">
       <div className="signup-container">
         <div className="left">
-          <h2>Sign Up</h2>
+          <h2 id={msg ? "success-msg" : null}>{msg ? msg : "Sign Up"}</h2>
           <p>
             Already have account
             <NavLink
@@ -115,9 +116,7 @@ function SignUp() {
           </form>
         </div>
         <div className="right">
-          <h2 id={msg ? "success-msg" : null}>
-            {msg ? msg : "Hello, Friend!"}
-          </h2>
+          <h2>Hello, Friend!</h2>
           <p>Enter your details and start journey with us</p>
         </div>
       </div>
