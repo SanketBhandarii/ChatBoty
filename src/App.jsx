@@ -25,6 +25,7 @@ const App = () => {
         navigate("/login");
       } catch (error) {
         console.error("Error during authentication check:", error);
+        navigate("/login");
       } finally {
         setLoading(false);
       }
