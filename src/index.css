@@ -35,7 +35,7 @@
 
 @media (max-width: 480px) {
   .loader {
-    width: 220px; /* Adjust size as needed */
+    width: 300px; /* Adjust size as needed */
   }
 }
 

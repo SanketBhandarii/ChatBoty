@@ -148,8 +148,8 @@ const Main = ({ user }) => {
           </div>
 
           <p className="bottom-info">
-            Chatgpt may display inaccurate info, including about, so
-            double-check its responses. Your privacy and Gemini Apps
+            Chatbot may display inaccurate info, including about, so
+            double-check its responses. Your privacy matters.
           </p>
         </div>
       </div>
