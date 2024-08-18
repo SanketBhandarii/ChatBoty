@@ -148,7 +148,7 @@ const Main = ({ user }) => {
           </div>
 
           <p className="bottom-info">
-            Chatbot may display inaccurte info, including about, so
+            Chatbot may display inaccurate info, including about, so
             double-check its responses. Your privacy matters.
           </p>
         </div>
