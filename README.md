@@ -8,7 +8,7 @@
 
 <body>
   <header>
-    <h1>ChatBOtty WebApp with Google Gemini API 🤖</h1>
+    <h1>ChatBotty WebApp with Google Gemini API 🤖</h1>
   </header>
 
   <section>
