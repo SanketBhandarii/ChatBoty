@@ -8,7 +8,7 @@
 
 <body>
   <header>
-    <h1>ChatGPT Clone with Google Gemini API 🤖</h1>
+    <h1>ChatBoty WebApp with Google Gemini API 🤖</h1>
   </header>
 
   <section>
