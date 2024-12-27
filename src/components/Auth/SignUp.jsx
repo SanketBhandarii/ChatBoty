@@ -34,7 +34,7 @@ function SignUp() {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/api/signup`,
+        `https://gpt-backend-lhbj.onrender.com/api/signup`,
         {
           username,
           email,

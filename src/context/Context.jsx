@@ -27,7 +27,7 @@ const ContextProvider = (props) => {
   const onSent = async (prompt) => {
     setInput("");
     setRecentPrompt(prompt);
-    setResultData("");  // Clear previous result data before starting new response
+    setResultData("");
     setLoading(true);
     setShowResult(true);
     let response;
@@ -41,7 +41,6 @@ const ContextProvider = (props) => {
       setPrevPrompts((prev) => [input, ...prev]);
     }
 
-    // Process the response to format bold, line breaks, and bullet points
     let responseArray = response.split("**");
     let newResponse = "";
 
@@ -53,17 +52,11 @@ const ContextProvider = (props) => {
       }
     }
 
-    // Replace * with <br/> for line breaks
     newResponse = newResponse.split("*").join("<br/>");
 
-    // Replace • with <br/>• to handle bullet points
     newResponse = newResponse.split("•").join("<br/>•");
     newResponse = newResponse.split(":").join("<br/>");
-
-    // Clear previous result data
     setResultData("");
-
-    // Split newResponse into words and display with delay
     let newResponseArray = newResponse.split(" ");
     newResponseArray.forEach((word, index) => {
       delayPara(index, word);
