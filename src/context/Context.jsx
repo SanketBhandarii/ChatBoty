@@ -11,58 +11,49 @@ const ContextProvider = (props) => {
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
 
-  const delayPara = (index, nextWord) => {
-    setTimeout(function () {
-      setResultData((prev) => prev + nextWord + " ");
-    }, 75 * index);
-  };
-
   const newChat = () => {
     setInput("");
     setResultData("");
     setLoading(false);
     setShowResult(false);
-  }
+  };
 
   const onSent = async (prompt) => {
+    const query = prompt || input;
+    if (!query) return;
+
     setInput("");
-    setRecentPrompt(prompt);
     setResultData("");
     setLoading(true);
     setShowResult(true);
-    let response;
 
-    if (prompt !== undefined) {
-      response = await run(prompt);
-      setRecentPrompt(prompt);
-    } else {
-      response = await run(input);
-      setRecentPrompt(input);
-      setPrevPrompts((prev) => [input, ...prev]);
+    if (!prompt) {
+      setPrevPrompts((prev) => [query, ...prev]);
     }
 
-    let responseArray = response.split("**");
-    let newResponse = "";
+    try {
+      const response = await run(query);
 
-    for (let i = 0; i < responseArray.length; i++) {
-      if (i % 2 === 0) {
-        newResponse += responseArray[i];
-      } else {
-        newResponse += "<b>" + responseArray[i] + "</b>";
-      }
+      // Directly render plain text without unnecessary HTML tags
+      const formattedResponse = response
+        .replace(/\*\*(.*?)\*\*/g, "$1") // Remove bold markers
+        .trim();
+
+      const words = formattedResponse.split(" ");
+      setResultData("");
+      words.forEach((word, index) => {
+        setTimeout(() => {
+          setResultData((prev) => prev + word + " ");
+        }, 75 * index);
+      });
+    } catch (error) {
+      console.log(error);
+      
+      setResultData("Error retrieving response. Please try again.");
+    } finally {
+      setLoading(false);
+      setRecentPrompt(query);
     }
-
-    newResponse = newResponse.split("*").join("<br/>");
-
-    newResponse = newResponse.split("•").join("<br/>•");
-    newResponse = newResponse.split(":").join("<br/>");
-    setResultData("");
-    let newResponseArray = newResponse.split(" ");
-    newResponseArray.forEach((word, index) => {
-      delayPara(index, word);
-    });
-
-    setLoading(false);
   };
 
   const contextValue = {
@@ -76,12 +67,10 @@ const ContextProvider = (props) => {
     resultData,
     input,
     setInput,
-    newChat
+    newChat,
   };
 
-  return (
-    <Context.Provider value={contextValue}>{props.children}</Context.Provider>
-  );
+  return <Context.Provider value={contextValue}>{props.children}</Context.Provider>;
 };
 
 export default ContextProvider;

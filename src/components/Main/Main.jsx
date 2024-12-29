@@ -1,9 +1,12 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import darcula from "react-syntax-highlighter/dist/cjs/styles/prism/darcula";
+
 
 const Main = ({ user }) => {
   const {
@@ -19,6 +22,16 @@ const Main = ({ user }) => {
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   const resultContainerRef = useRef(null);
+  const [copy, setCopy] = useState(false);
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopy(true);
+      setTimeout(() => {
+        setCopy(false);
+      }, 2000);
+    });
+  };
 
   async function handleLogout() {
     try {
@@ -41,11 +54,11 @@ const Main = ({ user }) => {
   return (
     <div className="main">
       <div className="nav">
-        <p style={{ color: "whitesmoke" }}>ChatGPT</p>
+        <p style={{ color: "whitesmoke" }}>ChatBoty</p>
         <div className="head-right">
           <i className="fa-solid fa-circle-user"></i>
           <p onClick={() => handleLogout()}>
-            <i class="fa-solid fa-right-from-bracket"></i>
+            <i className="fa-solid fa-right-from-bracket"></i>
           </p>
         </div>
       </div>
@@ -55,7 +68,7 @@ const Main = ({ user }) => {
           <>
             <div className="greet">
               <p>
-                <span>Hello, {user}</span>
+                <span>Hello, {user ? user : "Dude"}</span>
               </p>
               <p>How can I help you today?</p>
             </div>
@@ -110,11 +123,6 @@ const Main = ({ user }) => {
               </p>
             </div>
             <div className="result-data">
-              <img
-                src="https://freelogopng.com/images/all_img/1681039084chatgpt-icon.png"
-                alt=""
-                className="main-logo"
-              />
               {loading ? (
                 <div className="loader">
                   <hr />
@@ -122,7 +130,33 @@ const Main = ({ user }) => {
                   <hr />
                 </div>
               ) : (
-                <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+                <div>
+                  {resultData.includes("```") ? (
+                    resultData.split("```").map((block, index) =>
+                      index % 2 === 1 ? (
+                        <div key={index} className="code-block">
+                          <SyntaxHighlighter
+                            language="javascript"
+                            style={darcula}
+                          >
+                            {block}
+                          </SyntaxHighlighter>
+                          <button
+                            key={index}
+                            className="copy-button"
+                            onClick={() => copyToClipboard(block)}
+                          >
+                            {copy ? "Copied ✅" : "Copy Code"}
+                          </button>
+                        </div>
+                      ) : (
+                        <p key={index}>{block}</p>
+                      )
+                    )
+                  ) : (
+                    <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+                  )}
+                </div>
               )}
             </div>
           </div>

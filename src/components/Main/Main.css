@@ -14,20 +14,20 @@
   color: #585858;
   font-weight: 700;
 }
-.head-right{
+.head-right {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:20px;
+  gap: 20px;
 }
-.head-right>i{
+.head-right > i {
   font-size: 30px;
   background: -webkit-linear-gradient(16deg, #3978e5, #88e8e8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
 }
-.head-right>p{
+.head-right > p {
   color: whitesmoke;
   cursor: pointer;
 }
@@ -139,7 +139,7 @@
 
 .result {
   padding: 0px 5%;
-  max-height: 70vh;
+  max-height: 74vh;
   overflow-y: scroll;
 }
 
@@ -207,7 +207,6 @@
   }
   .main-bottom {
     bottom: 0px;
-
   }
   .main-bottom img {
     width: 20px;
@@ -218,4 +217,40 @@
   .search-box div {
     gap: 5px;
   }
+}
+.code-block {
+  position: relative;
+  margin: 20px 10px;
+  padding: 10px;
+  background-color: #2f2f2f;
+  border-radius: 5px;
+  overflow-x: auto;
+  /* max-width: 750px; */
+}
+@media (max-width: 832px) {
+  .code-block {
+    max-width: 500px;
+  }
+}
+@media (max-width: 627px) {
+  .code-block {
+    max-width: 300px;
+  }
+}
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 1px;
+  background-color: #3978e5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100px;
+}
+
+.copy-button:hover {
+  background-color: #2856a4;
 }

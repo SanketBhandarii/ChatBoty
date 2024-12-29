@@ -30,7 +30,10 @@ const App = () => {
         setLoading(false);
       }
     }
-    getAuth();
+    // getAuth();
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, [BACKEND_URL, navigate]);
 
   return (
